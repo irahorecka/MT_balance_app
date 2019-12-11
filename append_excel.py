@@ -1,7 +1,12 @@
+"""
+Syncs with mettler_read application
+to write output balance data to .csv
+file
+"""
+
 import os
 from datetime import datetime
 import pandas as pd
-
 
 class ToCSV:
     def __init__(self, _file):
@@ -10,6 +15,9 @@ class ToCSV:
         self.file_name = "{}.csv".format(_file)
         if self.file_name in os.listdir():
             raise FileExistsError('CSV file already exists - choose another name.')
+        self.mkdir_chdir_date()
+
+    def mkdir_chdir_date(self):
         date_today = "{}-{}-{}".format(
             datetime.now().year,
             datetime.now().month,
