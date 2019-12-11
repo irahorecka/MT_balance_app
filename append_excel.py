@@ -10,13 +10,12 @@ class ToCSV:
         self.file_name = "{}.csv".format(_file)
         if self.file_name in os.listdir():
             raise FileExistsError('CSV file already exists - choose another name.')
-        datetime_now = datetime.datetime.now()
         date_today = "{}-{}-{}".format(
-            datetime_now.year,
-            datetime_now.month,
-            datetime_now.day
+            datetime.now().year,
+            datetime.now().month,
+            datetime.now().day
         )
-        if date_today not in os.listdir:
+        if date_today not in os.listdir():
             os.mkdir(date_today)
         os.chdir("{}/{}".format(os.getcwd(), date_today))
 
