@@ -4,7 +4,9 @@ balance output data.
 """
 
 import time
+import re
 import serial
+import sys
 
 class Scale:
     def __init__(self):
@@ -22,20 +24,13 @@ class Scale:
         return byte_val
 
     def decode_to_str(self, _byte_val):
-        num_list = []
-        first_num = 0
-        for i in _byte_val.decode('utf-8'):
-            if first_num == 1:
-                if i == '.':
-                    num_list.append(i)
-                    first_num = 0
-                elif i == ' ':
-                    first_num = 0
-            if i.isdigit():
-                num_list.append(i)
-                first_num = 1
-        
-        return num_list
+        decoded_bytes = _byte_val.decode('utf-8')
+        num_val_list = re.findall(r"[-+]?\d*\.\d+|\d+", decoded_bytes)
+        try:
+            num_val = num_val_list[0]
+        except IndexError:
+            num_val = None
+        return num_val    
 
 
 def main():
@@ -43,7 +38,10 @@ def main():
     while True:
         byte_val = scale_val.get_value()
         str_val = scale_val.decode_to_str(byte_val)
-        print(str_val)
+        if not str_val:
+            continue
+        sys.stdout.write("  Weight: {}g   \r".format(str_val))
+        sys.stdout.flush()
 
 
 if __name__ == '__main__':
