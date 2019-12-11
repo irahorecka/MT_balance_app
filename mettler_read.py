@@ -4,9 +4,11 @@ balance output data.
 """
 
 import re
+import os
 import serial
 import sys
 from append_excel import ToCSV
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class Scale:
     def __init__(self):
@@ -37,8 +39,9 @@ def main():
     try:
         _filename = input("Input filename here - don't append .csv:\n")
         try:
+            os.chdir(BASE_DIR+"/Data")
             csv_file = ToCSV(_filename)
-        except FileExistsError as e:
+        except (FileExistsError, FileNotFoundError) as e:
             print(e)
         scale_val = Scale()
         while True:

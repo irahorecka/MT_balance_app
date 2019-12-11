@@ -10,6 +10,15 @@ class ToCSV:
         self.file_name = "{}.csv".format(_file)
         if self.file_name in os.listdir():
             raise FileExistsError('CSV file already exists - choose another name.')
+        datetime_now = datetime.datetime.now()
+        date_today = "{}-{}-{}".format(
+            datetime_now.year,
+            datetime_now.month,
+            datetime_now.day
+        )
+        if date_today not in os.listdir:
+            os.mkdir(date_today)
+        os.chdir("{}/{}".format(os.getcwd(), date_today))
 
     def write_csv(self, weight_value):
         data_val = [datetime.now(), weight_value]
