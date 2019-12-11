@@ -34,7 +34,7 @@ class Scale:
 
 
 def main():
-    _filename = input("  Input filename here - don't append .csv:\n  ")
+    _filename = input("Input filename here - don't append .csv:\n")
     csv_file = ToCSV(_filename)
     scale_val = Scale()
     while True:
@@ -43,8 +43,7 @@ def main():
         if not str_val:
             continue
         try:
-            while True:
-                csv_file.write_csv(str_val)
+            csv_file.write_csv(str_val)
         except FileExistsError as e:
             print(e)
         #sys.stdout.write("  Weight: {}g   \r".format(str_val))
