@@ -42,7 +42,7 @@ def main():
     scale_val = Scale()
     while True:
         byte_val = scale_val.get_value()
-        str_val = byte_val.decode_to_str(byte_val)
+        str_val = scale_val.decode_to_str(byte_val)
         print(str_val)
 
 
