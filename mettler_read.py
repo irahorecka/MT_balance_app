@@ -39,7 +39,8 @@ class Scale:
 
 
 def main():
-    scale_val = Scale()
-    byte_val = scale_val.get_value()
-    str_val = byte_val.decode_to_str(byte_val)
-    print(str_val)
+    while True:
+        scale_val = Scale()
+        byte_val = scale_val.get_value()
+        str_val = byte_val.decode_to_str(byte_val)
+        print(str_val)
