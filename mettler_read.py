@@ -44,3 +44,7 @@ def main():
         byte_val = scale_val.get_value()
         str_val = byte_val.decode_to_str(byte_val)
         print(str_val)
+
+
+if __name__ == '__main__':
+    main()
