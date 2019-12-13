@@ -6,6 +6,7 @@ data.
 import re
 import serial
 
+
 class Scale:
     def __init__(self):
         self.ser = serial.Serial(

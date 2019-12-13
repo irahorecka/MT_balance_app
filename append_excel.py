@@ -8,6 +8,7 @@ import os
 from datetime import datetime
 import pandas as pd
 
+
 class ToCSV:
     def __init__(self, _file):
         self.data_list = []
